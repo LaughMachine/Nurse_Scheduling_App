@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<style>
+input[type=submit] {
+    width: 83%;
+    background-color: #7DA7CA;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+div {
+    border-radius: 5px;
+    background-color: white;
+    padding: 20px;
+}
+table {
+    border-collapse: collapse;
+    width: 83%;
+}
+
+table, th, td {
+    border: 0px solid black;
+    margin: 1px 1px 1px 1px;
+    text-align: left;
+}
+
+tr:nth-child(odd){background-color: #f2f2f2}
+
+th {
+    background-color: #7DA7CA;
+    color: white;
+}
+
+h4 {
+    color: #7DA7CA;
+    margin: 1px 1px 1px 1px;
+}
+li {
+  color: red;
+}
+</style>
+<body>
+<h2>Dynamic Nurse Staffing Web App - NYP Cornell</h2>
+    <div>
+    {% if result != None %}
+    <h4>The recommended staffing is:</h4>
+    <br>
+    {% if result[0][0] == 7 %}
+        <h4>{{result[8][0]}}</h4>
+        <table>
+              <tbody>
+                <tr>
+                <th>Bay</th>
+                <th># ED Nurses</th>
+                <th># EDIN Nurses</th>
+                </tr>
+                <tr>
+                    <td width="10%"> Bay A </td>
+                    <td width="45%"> {{result[1][1]}} </td>
+                    <td width="50%"> {{result[5][1]}} </td>
+                </tr>
+                <tr>
+                    <td>Bay B</td>
+                    <td> {{result[2][1]}} </td>
+                    <td> {{result[6][1]}} </td>
+                </tr>
+                    <td>Bay C</td>
+                    <td> {{result[3][1]}} </td>
+                    <td> {{result[7][1]}} </td>
+                <tr>
+                    <td>Bay D</td>
+                    <td> {{result[4][1]}} </td>
+                    <td> 0 </td>
+                </tr>
+            </tbody>
+        </table>
+    {% endif %}
+    {% if result[0][0] == 19 %}
+        <h4>{{result[8][0]}}</h4>
+        <table>
+              <tbody>
+                <tr>
+                <th>Bay</th>
+                <th># ED Nurses</th>
+                <th># EDIN Nurses</th>
+                </tr>
+                <tr>
+                    <td width="10%"> Bay A </td>
+                    <td width="45%"> {{result[1][1]}} </td>
+                    <td width="50%"> {{result[5][1]}} </td>
+                </tr>
+                <tr>
+                    <td>Bay B</td>
+                    <td> {{result[2][1]}} </td>
+                    <td> {{result[6][1]}} </td>
+                </tr>
+                <tr>
+                    <td>Bay C</td>
+                    <td> {{result[3][1]}} </td>
+                    <td> {{result[7][1]}} </td>
+                </tr>
+            </tbody>
+        </table>
+    {% endif %}
+    {% endif %}
+    </div>
+    <div>
+        Thanks for recording the data! Please click on Return to go back to the first page. 
+    <form action="{{ url_for('index') }}">
+        <input type="submit" value="Return" />
+    </form>
+    </div>
+    <br>
+</body>
+</html>

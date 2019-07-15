@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<style>
+input[type=submit] {
+    width: 83%;
+    background-color: #7DA7CA;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+div {
+    border-radius: 5px;
+    background-color: white;
+    padding: 20px;
+}
+table {
+    border-collapse: collapse;
+    width: 83%;
+}
+
+table, th, td {
+    border: 0px solid black;
+    margin: 1px 1px 1px 1px;
+    text-align: left;
+}
+
+tr:nth-child(odd){background-color: #f2f2f2}
+
+th {
+    background-color: #7DA7CA;
+    color: white;
+}
+
+h4 {
+    color: #7DA7CA;
+    margin: 1px 1px 1px 1px;
+}
+li {
+  color: red;
+}
+</style>
+<head>
+	<meta charset="utf-8">
+	<title>Record AM Census</title>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script>
+	$(function() {
+		$( ".dtpick" ).datepicker();
+	});
+	</script>
+</head>
+<body>
+<h2>Dynamic Nurse Staffing Web App - NYP Cornell</h2>
+<form method="POST" action="">
+<div>
+    <br>
+    <b>Step 1.</b> Fill out the date.
+    <br>
+    <br>
+    <table>
+        <tbody>
+        <tr>
+            <th> Date </th>
+        </tr>
+        <tr>
+            <td width="%45">
+                {{ form.dt(class="dtpick") | safe }}
+                {% if form.dt.errors %}
+                  <ul class=errors>
+                  {% for error in form.dt.errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}</ul>
+                {% endif %}
+            </td>
+        </tr>
+    </tbody>
+    </table>
+    <br>
+    <b>Step 2.</b> Input the following information about the number of nurses/patients in the ED.
+    <br>
+    <br>
+    <h4>Nurses</h4>
+    <table class = "pure-table">
+        <tbody>
+            <tr>
+            <th></th>
+            <th> Number available</th>
+            <th> Max Number of patients/nurse </th> 
+            </tr>
+            <tr>
+                <td width="10%">ED</td>
+                <td width="45%">{{ form.numnurse|safe }}
+                {% if form.numnurse.errors %}
+                      <ul class=errors>
+                      {% for error in form.numnurse.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}</ul>
+                    {% endif %}
+                </td>
+                <td width="%45">
+                {{ form.nursetopat|safe }}
+                {% if form.nursetopat.errors %}
+                      <ul class=errors>
+                      {% for error in form.nursetopat.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}</ul>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>EDIN</td>
+                <td>{{ form.numnurse_2|safe }}
+                {% if form.numnurse_2.errors %}
+                      <ul class=errors>
+                      {% for error in form.numnurse_2.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}</ul>
+                    {% endif %}
+                </td>
+                <td>{{ form.nursetopat_2|safe }}
+                {% if form.nursetopat_2.errors %}
+                      <ul class=errors>
+                      {% for error in form.nursetopat_2.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}</ul>
+                    {% endif %}
+                </td>
+            </tr> 
+          </tbody>
+    </table>
+    <br>
+                <h4>Patients</h4>
+    <table>
+          <tbody>
+            <tr>
+            <th>Bay</th>
+            <th># ED patients (waiting + in treatment)</th>
+            <th># Inpatients</th>
+            </tr>
+            <tr>
+                <td width="10%"> Bay A</td>   
+                <td width="45%">{{ form.currnum1(placeholder="Bay A")|safe }}
+                {% if form.currnum1.errors %}
+                      <ul class=errors>
+                      {% for error in form.currnum1.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}</ul>
+                    {% endif %}
+                </td>
+                <td width="50%">{{ form.currnum1_2(placeholder="Bay A")|safe }}
+                {% if form.currnum1_2.errors %}
+                      <ul class=errors>
+                      {% for error in form.currnum1_2.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}</ul>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Bay B</td>
+                <td>{{ form.currnum2(placeholder="Bay B")|safe }}
+                {% if form.currnum2.errors %}
+                      <ul class=errors>
+                      {% for error in form.currnum2.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}</ul>
+                    {% endif %}
+                </td>
+                <td>{{ form.currnum2_2(placeholder="Bay B")|safe }}
+                {% if form.currnum2_2.errors %}
+                      <ul class=errors>
+                      {% for error in form.currnum2_2.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}</ul>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Bay C</td>
+                <td>{{ form.currnum3(placeholder="Bay C")|safe }}
+                {% if form.currnum3.errors %}
+                      <ul class=errors>
+                      {% for error in form.currnum3.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}</ul>
+                    {% endif %}
+                </td>
+                <td>{{ form.currnum3_2(placeholder="Bay C")|safe }}
+                {% if form.currnum3_2.errors %}
+                      <ul class=errors>
+                      {% for error in form.currnum3_2.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}</ul>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>    
+                <td>Bay D</td>
+                <td>{{ form.currnum4(placeholder="Bay D")|safe }}
+                {% if form.currnum4.errors %}
+                      <ul class=errors>
+                      {% for error in form.currnum4.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}</ul>
+                    {% endif %}
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    </select>
+    <br>
+    <b>Step 3.</b> Click on submit.
+    <br>
+    <input type=submit name='input' value='Submit'> 
+  </div>
+  </form>
+  <div>
+    {% if result != None %}
+    <h4>The recommended staffing is:</h4>
+    <br>
+    <h4>{{result[8][0]}}</h4>
+    <table>
+          <tbody>
+            <tr>
+            <th>Bay</th>
+            <th># ED Nurses</th>
+            <th># EDIN Nurses</th>
+            </tr>
+            <tr>
+                <td width="10%"> Bay A </td>   
+                <td width="45%"> {{result[1][1]}} </td>
+                <td width="50%"> {{result[5][1]}} </td>
+            </tr>
+            <tr>
+                <td>Bay B</td>
+                <td> {{result[2][1]}} </td>
+                <td> {{result[6][1]}} </td>
+            </tr>
+                <td>Bay C</td>
+                <td> {{result[3][1]}} </td>
+                <td> {{result[7][1]}} </td>
+            <tr>    
+                <td>Bay D</td>
+                <td> {{result[4][1]}} </td>
+                <td> 0 </td>
+            </tr>
+        </tbody>
+    </table>
+    {% if result[0][0] == 19 %}
+    <br>
+    <h4>{{result[13][0]}}</h4>
+    <table>
+          <tbody>
+            <tr>
+            <th>Bay</th>
+            <th># ED Nurses</th>
+            <th># EDIN Nurses</th>
+            </tr>
+            <tr>
+                <td width="10%"> Bay A </td>   
+                <td width="45%"> {{result[9][1]}} </td>
+                <td width="50%"> 0 </td>
+            </tr>
+            <tr>
+                <td>Bay B</td>
+                <td> {{result[10][1]}} </td>
+                <td> 0 </td>
+            </tr>
+                <td>Bay C</td>
+                <td> {{result[11][1]}} </td>
+                <td> 0 </td>
+            <tr>    
+                <td>Bay D</td>
+                <td> 0 </td>
+                <td> 0 </td>
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
+    {% endif %}
+      </div>
+    <br>
+<figure>
+  <img src="/static/Arrivals.jpg" alt="Arrivals" style="float: left; width: 50%;">
+</figure>
+ <figure>
+  <img src="/static/LOS.jpg" alt="LOS" style="float:left; width:50%;">
+</figure>
+</body>
+</html>
